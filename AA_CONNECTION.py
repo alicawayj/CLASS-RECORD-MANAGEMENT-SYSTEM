@@ -1281,7 +1281,15 @@ class ClassRecordSystem:
     def manage_subjects(self):
         self.clear_main_content()
 
-        header_frame = ctk.CTkFrame(self.main_content, fg_color="transparent")
+        # this is the scrollable Subject Management area
+        manage_scroll = ctk.CTkScrollableFrame(
+            self.main_content,
+            fg_color="transparent"
+        )
+        manage_scroll.pack(fill="both", expand=True, padx=10, pady=10)
+
+        # HEADER
+        header_frame = ctk.CTkFrame(manage_scroll, fg_color="transparent")
         header_frame.pack(fill="x", pady=(0, 20))
 
         ctk.CTkLabel(
@@ -1291,7 +1299,7 @@ class ClassRecordSystem:
         ).pack(anchor="w")
 
         # Add New Subject Section
-        add_subject_frame = ctk.CTkFrame(self.main_content)
+        add_subject_frame = ctk.CTkFrame(manage_scroll)
         add_subject_frame.pack(fill="x", pady=(0, 20), padx=10)
 
         ctk.CTkLabel(
@@ -1303,7 +1311,9 @@ class ClassRecordSystem:
         subject_form_frame = ctk.CTkFrame(add_subject_frame, fg_color="transparent")
         subject_form_frame.pack(fill="x", padx=10, pady=10)
 
-        ctk.CTkLabel(subject_form_frame, text="Subject Name:", font=("Arial", 14)).grid(row=0, column=0, padx=(0, 10), pady=5, sticky="w")
+        ctk.CTkLabel(subject_form_frame, text="Subject Name:", font=("Arial", 14)).grid(
+            row=0, column=0, padx=(0, 10), pady=5, sticky="w"
+        )
         self.new_subject_entry = ctk.CTkEntry(
             subject_form_frame,
             placeholder_text="Enter subject name",
@@ -1323,7 +1333,7 @@ class ClassRecordSystem:
         ).grid(row=0, column=2, padx=10, pady=5)
 
         # Subjects List Section
-        subjects_frame = ctk.CTkFrame(self.main_content)
+        subjects_frame = ctk.CTkFrame(manage_scroll)
         subjects_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
         ctk.CTkLabel(
@@ -1365,7 +1375,7 @@ class ClassRecordSystem:
         self.load_subjects()
 
         # Add Student to Subject Section
-        add_student_frame = ctk.CTkFrame(self.main_content)
+        add_student_frame = ctk.CTkFrame(manage_scroll)
         add_student_frame.pack(fill="x", pady=20, padx=10)
 
         ctk.CTkLabel(
@@ -1404,7 +1414,7 @@ class ClassRecordSystem:
         ).grid(row=0, column=4, padx=10, pady=5)
 
         # Add New Student Section
-        add_new_student_frame = ctk.CTkFrame(self.main_content)
+        add_new_student_frame = ctk.CTkFrame(manage_scroll)
         add_new_student_frame.pack(fill="x", pady=20, padx=10)
 
         ctk.CTkLabel(
